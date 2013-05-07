@@ -24,8 +24,8 @@ Cabal-Version:   >= 1.6
 
 Library
   Build-Depends:
-    base          >= 3.0 && < 4.3,
-    containers    >= 0.2 && < 0.4
+    base          >= 3.0 && < 4.7,
+    containers    >= 0.2 && < 0.6
 
   exposed-modules:
     Data.Atom.Simple
