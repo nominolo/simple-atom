@@ -1,5 +1,5 @@
 Name:            simple-atom
-Version:         0.2
+Version:         0.2.1
 License:         BSD3
 License-File:    LICENSE
 Author:          Koen Claessen, Niklas Sorensson
@@ -20,6 +20,11 @@ Description:
    * @Ord@-comparison results are independent on evaluation order
   .
   This module is thread-safe.
+
+-- CHANGE LOG
+----------------------------
+-- 0.2.1 -- relax depends and make small tweaks
+
                  
 Category:        Data, Compilers/Interpreters, Parsing
 Stability:       provisional
@@ -31,9 +36,9 @@ Flag debug
 
 Library
   Build-Depends:
-    base          >= 3.0 && < 4.4,
-    containers    >= 0.2 && < 0.5,
-    deepseq       == 1.1.*
+    base          >= 3.0,
+    containers    >= 0.2,
+    deepseq       >= 1.3
 
   if (flag(debug))
     Build-Depends: murmur-hash == 0.1.*
