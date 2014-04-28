@@ -1,10 +1,11 @@
+{-# LANGUAGE Trustworthy #-}
 module Data.Atom.Simple
   ( Symbol, intern )
 where
 
 import Data.Char ( ord )
 import qualified Data.Map as M
-import System.IO.Unsafe ( unsafePerformIO )
+import System.IO.Unsafe ( unsafeDupablePerformIO )
 import Data.IORef ( newIORef, atomicModifyIORef )
 
 -- -------------------------------------------------------------------
@@ -63,10 +64,10 @@ instance Ord Symbol where
 -- (This function is, of course, thread-safe.)
 intern :: String -> Symbol
 intern =
-  unsafePerformIO $
+  unsafeDupablePerformIO $
     do tab <- newIORef (SymTbl 0 M.empty)
        return $ \s ->
-         unsafePerformIO $
+         unsafeDupablePerformIO $
            atomicModifyIORef tab $ \tbl@(SymTbl n t) ->
              case M.lookup s t of
                Just sym -> (tbl, sym)

@@ -1,5 +1,5 @@
 Name:            simple-atom
-Version:         0.1.0.1
+Version:         0.2.2
 License:         BSD3
 License-File:    LICENSE
 Author:          Koen Claessen, Niklas Sorensson
@@ -9,27 +9,43 @@ Synopsis:        Atom (or symbol) datatype for fast comparision and sorting.
 Description:
   This module provides an abstract datatype for atoms, such that:
   .
-  * Each atom string is only in memory once
+   * Each atom string is only in memory once
   .
-  * @O(n)@ creation time
+   * @O(n)@ creation time
   .
-  * @O(1)@ equality-comparison
+   * @O(1)@ equality-comparison
   .
-  * @O(1)@ (in practice) ord-comparison
+   * @O(1)@ (in practice) ord-comparison
   .
-  * @Ord@-comparison results are independent on evaluation order
+   * @Ord@-comparison results are independent on evaluation order
   .
   This module is thread-safe.
+
+-- CHANGE LOG
+----------------------------
+-- 0.2.1 -- relax depends and make small tweaks
 
 Category:        Data, Compilers/Interpreters, Parsing
 Stability:       provisional
 Build-Type:      Simple
 Cabal-Version:   >= 1.6
 
+Flag debug
+  default: False
+
 Library
   Build-Depends:
-    base          >= 3.0 && < 4.7,
-    containers    >= 0.2 && < 0.6
+    base          >= 3.0,
+    containers    >= 0.2,
+    deepseq       >= 1.3,
+    bytestring    >= 0.9,
+    text          >= 0.11
+
+  if (flag(debug))
+    Build-Depends: murmur-hash == 0.1.*
+  else
+    Cpp-Options: -DNDEBUG
+  Extensions: CPP
 
   exposed-modules:
     Data.Atom.Simple
