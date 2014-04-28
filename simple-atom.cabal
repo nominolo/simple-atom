@@ -25,7 +25,6 @@ Description:
 ----------------------------
 -- 0.2.1 -- relax depends and make small tweaks
 
-                 
 Category:        Data, Compilers/Interpreters, Parsing
 Stability:       provisional
 Build-Type:      Simple
